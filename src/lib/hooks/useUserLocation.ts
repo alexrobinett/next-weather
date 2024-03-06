@@ -1,7 +1,7 @@
 'use client'
 import { useQuery } from "@tanstack/react-query";
 
-async function getUserLocation() {
+export async function getUserLocation() {
         return new Promise((resolve, reject) => {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
