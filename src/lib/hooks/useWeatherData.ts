@@ -116,11 +116,13 @@ async function fetchWeatherData(lat: number, lon: number): Promise<WeatherData> 
     return response.json() as Promise<WeatherData>;
 }
 
-const useWeatherData = (lat: number, lon: number) => {
+const useWeatherData = (lat?: number, lon?: number) => {
     const { data, isPending, error } = useQuery({
-        queryKey: ["weatherData"],
+        queryKey: ["weatherData", lat, lon],
         enabled: lat !== undefined && lon !== undefined,
-        queryFn: () => fetchWeatherData(lat, lon),
+        queryFn: () => fetchWeatherData(lat!, lon!),
+        staleTime: 5 * 60 * 1000, // 5 minutes
+        retry: 2,
     });
     return { data, isPending, error };
 };

@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
       <html lang="en">
-        <body className={`font-sans ${inter.variable}`}>
+        <body className={`font-sans ${inter.variable} min-h-screen bg-background transition-colors`}>
           <Providers>
             {children}
           </Providers>

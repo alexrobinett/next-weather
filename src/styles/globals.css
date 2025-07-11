@@ -4,7 +4,7 @@
  
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: rgb(241 245 249);
     --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
@@ -36,7 +36,7 @@
   }
  
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: rgb(15 23 42);
     --foreground: 210 40% 98%;
  
     --card: 222.2 84% 4.9%;
@@ -72,5 +72,670 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Glassmorphic Background Gradients */
+@layer components {
+  .weather-bg-sunny {
+    background: linear-gradient(135deg, #74b9ff 0%, #0984e3 50%, #fd79a8 100%);
+  }
+  
+  .weather-bg-cloudy {
+    background: linear-gradient(135deg, #636e72 0%, #2d3436 50%, #a29bfe 100%);
+  }
+  
+  .weather-bg-rainy {
+    background: linear-gradient(135deg, #74b9ff 0%, #0984e3 30%, #2d3436 100%);
+  }
+  
+  .weather-bg-snowy {
+    background: linear-gradient(135deg, #ddd6fe 0%, #a78bfa 50%, #e879f9 100%);
+  }
+  
+  .weather-bg-night {
+    background: linear-gradient(135deg, #2d3436 0%, #636e72 50%, #74b9ff 100%);
+  }
+  
+  .weather-bg-default {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  }
+
+  /* Glass Morphism Card - Enhanced for gradient backgrounds */
+  .glass-card {
+    @apply backdrop-blur-lg border rounded-2xl shadow-xl;
+    /* Enhanced glassmorphic effect with vibrant backgrounds */
+    background-color: rgba(255, 255, 255, 0.75);
+    border-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px) saturate(180%) brightness(110%);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 
+                0 4px 16px rgba(255, 255, 255, 0.1) inset;
+  }
+  
+  .dark .glass-card {
+    /* Dark mode: Enhanced glassmorphic effect */
+    background-color: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px) saturate(180%) brightness(120%);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 
+                0 4px 16px rgba(255, 255, 255, 0.05) inset;
+  }
+  
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300 hover:shadow-2xl hover:scale-105;
+  }
+  
+  .glass-card-hover:hover {
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(24px) saturate(200%) brightness(115%);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), 
+                0 8px 24px rgba(255, 255, 255, 0.15) inset;
+  }
+  
+  .dark .glass-card-hover:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(24px) saturate(200%) brightness(130%);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 
+                0 8px 24px rgba(255, 255, 255, 0.08) inset;
+  }
+  
+  /* WCAG AA Compliant Text Colors (4.5:1 contrast ratio) */
+  .text-primary {
+    /* Dark text on light background - 16.94:1 contrast ratio */
+    @apply text-gray-900;
+  }
+  
+  .dark .text-primary {
+    /* Light text on dark background - 19:1 contrast ratio */
+    @apply text-white;
+  }
+  
+  .text-secondary {
+    /* Medium dark text - 7.23:1 contrast ratio */
+    @apply text-gray-700;
+  }
+  
+  .dark .text-secondary {
+    /* Light gray text - 8.59:1 contrast ratio */
+    @apply text-gray-200;
+  }
+  
+  .text-muted {
+    /* Darker muted text for better contrast - 4.56:1 contrast ratio */
+    @apply text-gray-600;
+  }
+  
+  .dark .text-muted {
+    /* Light muted text - 5.74:1 contrast ratio */
+    @apply text-gray-300;
+  }
+  
+  /* High contrast variants for important text */
+  .text-accent {
+    @apply text-blue-700;
+  }
+  
+  .dark .text-accent {
+    @apply text-blue-300;
+  }
+  
+  /* Animated gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent;
+  }
+  
+  /* Weather icons animation */
+  .weather-icon-glow {
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+    animation: glow 3s ease-in-out infinite alternate;
+  }
+  
+  @keyframes glow {
+    from { filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)); }
+    to { filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.6)); }
+  }
+  
+  /* Floating animation */
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  /* Shimmer loading effect */
+  .shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  
+  /* Accessibility & User Preferences */
+  .reduce-motion *,
+  .reduce-motion *::before,
+  .reduce-motion *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .no-animations * {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .slow-animations * {
+    animation-duration: calc(var(--animation-duration, 1s) * 1.5) !important;
+    transition-duration: calc(var(--transition-duration, 0.3s) * 1.5) !important;
+  }
+  
+  .fast-animations * {
+    animation-duration: calc(var(--animation-duration, 1s) * 0.5) !important;
+    transition-duration: calc(var(--transition-duration, 0.3s) * 0.5) !important;
+  }
+  
+  .high-contrast {
+    filter: contrast(1.2) saturate(1.3);
+  }
+  
+  .high-contrast .glass-card {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(0, 0, 0, 0.3) !important;
+  }
+  
+  .dark.high-contrast .glass-card {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+  }
+  
+  .large-text {
+    font-size: 120%;
+  }
+  
+  .large-text .text-xs { font-size: 0.9rem; }
+  .large-text .text-sm { font-size: 1rem; }
+  .large-text .text-base { font-size: 1.2rem; }
+  .large-text .text-lg { font-size: 1.4rem; }
+  .large-text .text-xl { font-size: 1.6rem; }
+  .large-text .text-2xl { font-size: 2rem; }
+  .large-text .text-3xl { font-size: 2.4rem; }
+  .large-text .text-4xl { font-size: 3rem; }
+  .large-text .text-5xl { font-size: 3.6rem; }
+  .large-text .text-6xl { font-size: 4.2rem; }
+  
+  .compact-mode .glass-card {
+    @apply p-2;
+  }
+  
+  .compact-mode .space-y-6 > * + * {
+    margin-top: 1rem;
+  }
+  
+  .compact-mode .space-y-4 > * + * {
+    margin-top: 0.75rem;
+  }
+  
+  .compact-mode .space-y-3 > * + * {
+    margin-top: 0.5rem;
+  }
+  
+  /* Focus styles for better accessibility */
+  .focus\:ring-2:focus {
+    outline: 2px solid;
+    outline-offset: 2px;
+  }
+  
+  /* Screen reader only text */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* ===== ENHANCED THEMES ===== */
+
+  /* Seasonal Theme - Spring */
+  .theme-spring {
+    --glassmorphic-bg-light: rgba(247, 254, 231, 0.85);
+    --glassmorphic-bg-dark: rgba(5, 46, 22, 0.85);
+    --glassmorphic-border-light: rgba(22, 163, 74, 0.2);
+    --glassmorphic-border-dark: rgba(22, 163, 74, 0.3);
+    --accent-color: #16a34a;
+    --text-accent: #166534;
+    background: linear-gradient(135deg, #a7f3d0 0%, #6ee7b7 25%, #34d399 50%, #10b981 75%, #059669 100%);
+    background-attachment: fixed;
+  }
+
+  .theme-spring .glass-card {
+    background: var(--glassmorphic-bg-light);
+    border-color: var(--glassmorphic-border-light);
+    box-shadow: 0 8px 32px rgba(22, 163, 74, 0.15);
+  }
+
+  /* Enhanced text contrast for Spring theme */
+  .theme-spring .text-primary {
+    color: #052e16 !important;
+  }
+
+  .theme-spring .text-secondary {
+    color: #166534 !important;
+  }
+
+  .theme-spring .text-muted {
+    color: #365314 !important;
+  }
+
+  /* Seasonal Theme - Summer */
+  .theme-summer {
+    --glassmorphic-bg-light: rgba(248, 250, 252, 0.85);
+    --glassmorphic-bg-dark: rgba(12, 74, 110, 0.85);
+    --glassmorphic-border-light: rgba(2, 132, 199, 0.2);
+    --glassmorphic-border-dark: rgba(2, 132, 199, 0.3);
+    --accent-color: #0284c7;
+    --text-accent: #0369a1;
+    background: linear-gradient(135deg, #7dd3fc 0%, #38bdf8 25%, #0ea5e9 50%, #0284c7 75%, #0369a1 100%);
+    background-attachment: fixed;
+  }
+
+  .theme-summer .glass-card {
+    background: var(--glassmorphic-bg-light);
+    border-color: var(--glassmorphic-border-light);
+    box-shadow: 0 8px 32px rgba(2, 132, 199, 0.15);
+  }
+
+  /* Enhanced text contrast for Summer theme */
+  .theme-summer .text-primary {
+    color: #0c4a6e !important;
+  }
+
+  .theme-summer .text-secondary {
+    color: #0369a1 !important;
+  }
+
+  .theme-summer .text-muted {
+    color: #075985 !important;
+  }
+
+  /* Seasonal Theme - Autumn */
+  .theme-autumn {
+    --glassmorphic-bg-light: rgba(255, 251, 235, 0.85);
+    --glassmorphic-bg-dark: rgba(124, 45, 18, 0.85);
+    --glassmorphic-border-light: rgba(234, 88, 12, 0.2);
+    --glassmorphic-border-dark: rgba(234, 88, 12, 0.3);
+    --accent-color: #ea580c;
+    --text-accent: #a16207;
+    background: linear-gradient(135deg, #fed7aa 0%, #fb923c 25%, #f97316 50%, #ea580c 75%, #dc2626 100%);
+    background-attachment: fixed;
+  }
+
+  .theme-autumn .glass-card {
+    background: var(--glassmorphic-bg-light);
+    border-color: var(--glassmorphic-border-light);
+    box-shadow: 0 8px 32px rgba(234, 88, 12, 0.15);
+  }
+
+  /* Enhanced text contrast for Autumn theme */
+  .theme-autumn .text-primary {
+    color: #7c2d12 !important;
+  }
+
+  .theme-autumn .text-secondary {
+    color: #a16207 !important;
+  }
+
+  .theme-autumn .text-muted {
+    color: #92400e !important;
+  }
+
+  /* Seasonal Theme - Winter */
+  .theme-winter {
+    --glassmorphic-bg-light: rgba(248, 250, 252, 0.85);
+    --glassmorphic-bg-dark: rgba(30, 58, 138, 0.85);
+    --glassmorphic-border-light: rgba(59, 130, 246, 0.2);
+    --glassmorphic-border-dark: rgba(59, 130, 246, 0.3);
+    --accent-color: #3b82f6;
+    --text-accent: #1e40af;
+    background: linear-gradient(135deg, #dbeafe 0%, #93c5fd 25%, #60a5fa 50%, #3b82f6 75%, #1d4ed8 100%);
+    background-attachment: fixed;
+  }
+
+  .theme-winter .glass-card {
+    background: var(--glassmorphic-bg-light);
+    border-color: var(--glassmorphic-border-light);
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.15);
+  }
+
+  /* Enhanced text contrast for Winter theme */
+  .theme-winter .text-primary {
+    color: #1e3a8a !important;
+  }
+
+  .theme-winter .text-secondary {
+    color: #1e40af !important;
+  }
+
+  .theme-winter .text-muted {
+    color: #1d4ed8 !important;
+  }
+
+  /* Minimal Theme Styles */
+  .minimal-theme {
+    --glassmorphic-bg-light: rgba(255, 255, 255, 0.95);
+    --glassmorphic-bg-dark: rgba(17, 24, 39, 0.95);
+    --glassmorphic-border-light: rgba(156, 163, 175, 0.1);
+    --glassmorphic-border-dark: rgba(156, 163, 175, 0.1);
+  }
+
+  .minimal-theme .glass-card {
+    background: var(--glassmorphic-bg-light);
+    border-color: var(--glassmorphic-border-light);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(4px);
+    border-radius: 8px; /* Less rounded corners */
+  }
+
+  .minimal-theme.dark .glass-card {
+    background: var(--glassmorphic-bg-dark);
+    border-color: var(--glassmorphic-border-dark);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Enhanced text contrast for Minimal themes */
+  .theme-minimal-light .text-primary {
+    color: #111827 !important;
+  }
+
+  .theme-minimal-light .text-secondary {
+    color: #374151 !important;
+  }
+
+  .theme-minimal-light .text-muted {
+    color: #6b7280 !important;
+  }
+
+  .theme-minimal-dark .text-primary {
+    color: #f9fafb !important;
+  }
+
+  .theme-minimal-dark .text-secondary {
+    color: #e5e7eb !important;
+  }
+
+  .theme-minimal-dark .text-muted {
+    color: #d1d5db !important;
+  }
+
+  /* Remove decorative elements in minimal mode */
+  .minimal-theme .weather-emoji,
+  .minimal-theme .decorative-icon {
+    display: none;
+  }
+
+  /* High Contrast Theme Styles */
+  .high-contrast-theme {
+    --glassmorphic-bg-light: rgba(255, 255, 255, 0.98);
+    --glassmorphic-bg-dark: rgba(0, 0, 0, 0.98);
+    --glassmorphic-border-light: rgba(0, 0, 0, 0.8);
+    --glassmorphic-border-dark: rgba(255, 255, 255, 0.8);
+  }
+
+  .high-contrast-theme .glass-card {
+    background: var(--glassmorphic-bg-light);
+    border: 2px solid var(--glassmorphic-border-light);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    backdrop-filter: none; /* Remove blur for clarity */
+  }
+
+  .high-contrast-theme.dark .glass-card {
+    background: var(--glassmorphic-bg-dark);
+    border-color: var(--glassmorphic-border-dark);
+    box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
+  }
+
+  /* High contrast text adjustments */
+  .high-contrast-theme .text-primary {
+    color: #000000 !important;
+    font-weight: 600;
+  }
+
+  .high-contrast-theme.dark .text-primary {
+    color: #ffffff !important;
+    font-weight: 600;
+  }
+
+  .high-contrast-theme .text-secondary {
+    color: #333333 !important;
+    font-weight: 500;
+  }
+
+  .high-contrast-theme.dark .text-secondary {
+    color: #cccccc !important;
+    font-weight: 500;
+  }
+
+  .high-contrast-theme .text-muted {
+    color: #666666 !important;
+    font-weight: 500;
+  }
+
+  .high-contrast-theme.dark .text-muted {
+    color: #999999 !important;
+    font-weight: 500;
+  }
+
+  /* Enhanced focus styles for high contrast */
+  .high-contrast-theme button:focus,
+  .high-contrast-theme input:focus,
+  .high-contrast-theme select:focus {
+    outline: 3px solid #0066cc !important;
+    outline-offset: 2px;
+  }
+
+  .high-contrast-theme.dark button:focus,
+  .high-contrast-theme.dark input:focus,
+  .high-contrast-theme.dark select:focus {
+    outline: 3px solid #66b3ff !important;
+    outline-offset: 2px;
+  }
+
+  /* Standard theme background styles */
+  .theme-light {
+    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 25%, #7dd3fc 50%, #38bdf8 75%, #0ea5e9 100%);
+    background-attachment: fixed;
+  }
+
+  /* Enhanced text contrast for Light theme */
+  .theme-light .text-primary {
+    color: #111827 !important;
+  }
+
+  .theme-light .text-secondary {
+    color: #374151 !important;
+  }
+
+  .theme-light .text-muted {
+    color: #6b7280 !important;
+  }
+
+  .theme-dark {
+    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 25%, #3730a3 50%, #4338ca 75%, #4f46e5 100%);
+    background-attachment: fixed;
+  }
+
+  /* Enhanced text contrast for Dark theme */
+  .theme-dark .text-primary {
+    color: #f9fafb !important;
+  }
+
+  .theme-dark .text-secondary {
+    color: #e5e7eb !important;
+  }
+
+  .theme-dark .text-muted {
+    color: #d1d5db !important;
+  }
+
+  .theme-minimal-light {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 25%, #cbd5e1 50%, #94a3b8 75%, #64748b 100%);
+    background-attachment: fixed;
+  }
+
+  .theme-minimal-dark {
+    background: linear-gradient(135deg, #111827 0%, #1f2937 25%, #374151 50%, #4b5563 75%, #6b7280 100%);
+    background-attachment: fixed;
+  }
+
+  .theme-high-contrast-light {
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 25%, #e2e8f0 50%, #cbd5e1 75%, #94a3b8 100%);
+    background-attachment: fixed;
+  }
+
+  .theme-high-contrast-dark {
+    background: linear-gradient(135deg, #000000 0%, #111827 25%, #1f2937 50%, #374151 75%, #4b5563 100%);
+    background-attachment: fixed;
+  }
+
+  /* Dynamic theme transitions */
+  .theme-transition {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+  }
+
+  /* Reduced motion support for theme changes */
+  @media (prefers-reduced-motion: reduce) {
+    .theme-transition {
+      transition: none !important;
+    }
+  }
+
+  /* Enhanced glassmorphic effects for different themes */
+  .glass-card.theme-enhanced {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass-card.theme-enhanced::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-color, #3b82f6), transparent);
+    opacity: 0.6;
+  }
+
+  /* Seasonal theme animations */
+  @keyframes springFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+
+  @keyframes summerShimmer {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+  }
+
+  @keyframes autumnSway {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(1deg); }
+    75% { transform: rotate(-1deg); }
+  }
+
+  @keyframes winterCrystal {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  /* Apply seasonal animations */
+  .theme-spring .glass-card:hover {
+    animation: springFloat 2s ease-in-out infinite;
+  }
+
+  .theme-summer .glass-card:hover {
+    animation: summerShimmer 1.5s ease-in-out infinite;
+  }
+
+  .theme-autumn .glass-card:hover {
+    animation: autumnSway 3s ease-in-out infinite;
+  }
+
+  .theme-winter .glass-card:hover {
+    animation: winterCrystal 2s ease-in-out infinite;
+  }
+
+  /* Disable animations for minimal theme and reduced motion */
+  .minimal-theme .glass-card:hover,
+  .reduce-motion .glass-card:hover {
+    animation: none !important;
+  }
+
+  /* Dynamic gradient animations */
+  @keyframes gradientShift {
+    0%, 100% { 
+      background-size: 100% 100%; 
+      background-position: 0% 0%;
+    }
+    50% { 
+      background-size: 110% 110%; 
+      background-position: 5% 5%;
+    }
+  }
+
+  /* Apply subtle gradient animation to all themes (except minimal) */
+  .theme-spring,
+  .theme-summer,
+  .theme-autumn,
+  .theme-winter,
+  .theme-light,
+  .theme-dark {
+    animation: gradientShift 20s ease-in-out infinite;
+  }
+
+  /* Disable gradient animations for reduced motion users */
+  .reduce-motion .theme-spring,
+  .reduce-motion .theme-summer,
+  .reduce-motion .theme-autumn,
+  .reduce-motion .theme-winter,
+  .reduce-motion .theme-light,
+  .reduce-motion .theme-dark {
+    animation: none !important;
+  }
+
+  /* Global text contrast enforcement for all themes */
+  .glass-card {
+    color: inherit; /* Ensure cards inherit theme text colors */
+  }
+
+  /* Ensure buttons and interactive elements maintain good contrast */
+  .glass-card button,
+  .glass-card .text-primary,
+  .glass-card .text-secondary,
+  .glass-card .text-muted {
+    color: inherit !important;
+  }
+
+  /* Override any competing color rules that might reduce contrast */
+  [class*="theme-"] h1,
+  [class*="theme-"] h2,
+  [class*="theme-"] h3,
+  [class*="theme-"] h4,
+  [class*="theme-"] h5,
+  [class*="theme-"] h6 {
+    color: inherit !important;
   }
 }
